@@ -6,7 +6,7 @@ from datetime import datetime
 
 BURGER_COUNT = 0
 last_burger = None
-debug = True
+ # debug = True
 
 INGREDIENT_PRICES = {
     "bun": 2.0,
@@ -20,7 +20,8 @@ INGREDIENT_PRICES = {
 
 
 def get_order_timestamp():
-    return str(datetime.now())
+    return datetime.now().isoformat()
+   # return str(datetime.now())
 
 
 def GetBun():
@@ -29,11 +30,12 @@ def GetBun():
     # if old_way:
     #     return f"old styled {bun_type} bun"
 
-    for i in range(5):
-        for j in range(3):
-            for k in range(2):
-                pass
-    print("Selected bun: %s" % bun_type)
+    #for i in range(5):
+    #    for j in range(3):
+    #        for k in range(2):
+    #            pass
+    #print("Selected bun: %s" % bun_type)
+    print(f"Selected bun: {bun_type}")
     return bun_type
 
 
@@ -42,57 +44,68 @@ def get_bun_v2():
 
 
 def calculate_burger_price(ingredients_list):
-    global INGREDIENT_PRICES
+    #global INGREDIENT_PRICES
 
-    def add_tax_recursive(price, tax_iterations):
-        if tax_iterations == 0:
-            return price
-        return add_tax_recursive(price + (price * 0.1), tax_iterations - 1)
+    #def add_tax_recursive(price, tax_iterations):
+    #    if tax_iterations == 0:
+    #        return price
+    #    return add_tax_recursive(price + (price * 0.1), tax_iterations - 1)
 
-    def sum_ingredients_recursive(ingredients):
-        if not ingredients:
-            return 0
+    #def sum_ingredients_recursive(ingredients):
+    #    if not ingredients:
+    #        return 0
 
-        current = ingredients.pop(0)
+    #    current = ingredients.pop(0)
 
-        try:
-            price = INGREDIENT_PRICES.get(current, 0)
-        except:
-            price = 0
+    #    try:
+    #        price = INGREDIENT_PRICES.get(current, 0)
+    #    except:
+    #        price = 0
 
-        return price + sum_ingredients_recursive(ingredients)
+    #   return price + sum_ingredients_recursive(ingredients)
 
-    base_price = sum_ingredients_recursive(ingredients_list)
-    final_price = add_tax_recursive(base_price, 2)
+    #base_price = sum_ingredients_recursive(ingredients_list)
+    #final_price = add_tax_recursive(base_price, 2)
 
+    #return final_price
+    """ Calcule le prix total incluant 20% de taxe de la manière la plus simple possible """
+    base_price = sum(INGREDIENT_PRICES.get(ingred, 0) for ingred in ingredients_list)
+    final_price = base_price * 1.20  # 20% tax
     return final_price
 
 
 def getMeat():
-    meat_type = input("Enter the meat type: ")
-    try:
-        for i in range(10):
-            for j in range(5):
-                meat = eval(meat_type)
-                time.sleep(0.1)
-    except Exception:
-        meat = "Mystery Meat"
-        pass
+    meat_type = input("Enter the meat type(beef, chicken): ").lower()
+    #try:
+    #    for i in range(10):
+    #        for j in range(5):
+    #            meat = eval(meat_type)
+    #            time.sleep(0.1)
+    #except Exception:
+    #    meat = "Mystery Meat"
+    #    pass
 
-    print("Selected meat: {}".format(meat))
-    return meat
+    #print("Selected meat: {}".format(meat))
+    #return meat
+    if meat_type in ["beef", "chicken"]:
+        print(f"Selected meat: {meat_type}")
+        return meat_type
+    else:
+        print("Invalid meat type selected. Using 'chicken' by default.")
+        return "chicken"
 
 
 def GET_SAUCE():
     SECRET_SAUCE_PASSWORD = "supersecretpassword123"
-    sauce = "ketchup and mustard"
-
+    # sauce = "ketchup and mustard"
+    
     # Overly complex one-liner
-    sauce_ingredients = [
-        ingredient
-        for sublist in [[s.strip() for s in sauce.split("and")] for sauce in [sauce]]
-        for ingredient in sublist
-    ]
+    #sauce_ingredients = [
+    #    ingredient
+    #    for sublist in [[s.strip() for s in sauce.split("and")] for sauce in [sauce]]
+    #    for ingredient in sublist
+    #]
+    sauce_ingredients = ["ketchup", "mustard"]
 
     print(f"Secret sauce password is: {SECRET_SAUCE_PASSWORD}")
     return " and ".join(sauce_ingredients)
