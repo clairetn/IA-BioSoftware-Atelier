@@ -1,0 +1,97 @@
+Objectif : code pyhon /corriger/+principes FAIR/ à l'aide l'IA
+
+(en local : Python 3.10.12)
+
+résa iabioscripting  8G /pers /IFB ondemand
+
+0 la fin, push en spécifiant le modèle IA utilisé et le nombre approximatif d'ineraction
+
+Corriger les erreurs de code
+optimiser la code pour + d'efficacité
+suggérer des améliorations
+réussir les CI (intégration continue) automatiqque (ruf test si ref passe, bandit, safety pytest testde couverture du code)
+générer dfonctions, test universitaires et documentation
+
+=> check verts partout
+
+mais pour déclancher le CI après l'import, il faut aller dans Actions(==CI en github) et cliquer sur le bouton "activer"
+configuration du github/tokens : setting perso/DeveloperSettings/Personal access tokens/Tokens (classic), cocher repo + clic "generate token"
+note : iabioscripting
+expiration: 13 juillet 2025
+
+
+URL:https://github.com/IFB-ElixirFr/IA-BioSoftware-Atelier
+fork sur son github, branch main
+
+1er fichier à regarder : function_specifications.md
+donne les tests 
+
+fichier à débugger : burger.py
+
+Accès IA : https://ragarenn.eskemm-numerique.fr/ (compte CNRS/janus)
+modèle : Mistral Small 3.1 24B
+
+ctn: "Voici un script. Peux-tu me dire ce qu’il fait ?"
+rep: Bien sûr, je peux t'aider à analyser et comprendre un script. Pour cela, tu peux simplement copier et coller le script que tu veux analyser, et je te décrirai ce qu'il fait. 
+
+Cependant, comme je ne peux pas voir le script que tu as en tête, voici un exemple d'analyse pour un script Python simple : 
+...
+ctn: stop !!!
+rep: Je suis désolé si je t'ai submergé avec des informations. Si tu as un script spécifique que tu voudrais que j'analyse ou si tu as des questions précises, n'hésite pas à me le dire et je ferai de mon mieux pour t'aider de manière plus concise et adaptée à tes besoins.
+ctn: code burger.py
+rep: ... code déroutant et potentiellement inefficace ...
+Constantes et Variables Globales 
+    BURGER_COUNT: demokerb la qui à il faut stocker le nombre de burgers créés
+...
+ctn: je ne comprends pas “demokerb la qui à il”. Peux-tu me dire où tu as trouvé cette information ?
+rep: Je m'excuse pour cette erreur. La phrase "demokerb la qui à il" n'est pas correcte, et elle ne fait pas partie du script original que tu as fourni. Ce genre de phrase ne vient pas du script que tu m'as donné, et c'est probablement une erreur de manipulation linguistique de ma part. 
+
+Revenons au script pour te fournir une analyse claire et compréhensible. 
+... détail de chq fonction avec un commentaire en 2 lignes de ce qu'elle fait
+Conclusion 
+
+Ce script est une simulation déroutante et inefficace d'une machine de création de burgers avec du code redondant et potentiellement dangereux. Pour un usage réel, je recommande d'optimiser ce code et d'implémenter des pratiques plus sûres et efficaces. 
+ctn: Ok. Propose-moi des optimisations, des corrections de sécuité et des pratiques + FAIR
+rep: qq corrections
+ctn: code ok mais pas le CI => La version du code est ok mais elle ne passe ni “ruff lint” ni “safty check” ni “pytest coverage”. Corrige
+rep: ...
+commence à présenter les corrections mais au point 7, elle bascule en anglais ...
+...
+6. Tests à l'aide de pytest 
+
+Créons des tests pour assurer que asperge et safety. 
+6.1. Création des tests 
+
+Créez un fichier nommé test_burger_maker.py : 
+... code de test ...
+7. Run the tests with Pytest and Coverage 
+
+Run les tests avec coverage: 
+pytest --cov=burger_maker --cov-report=term-missing test_burger_maker.py
+ 
+ 
+8. Run Ruff 
+
+Run le lint pour assure style guidelines et PyLint: 
+sh
+ 
+ 
+ 
+1
+2
+3
+4
+5
+6
+ruff burger_maker.py
+
+pip install safety
+
+# Run the safety checker
+safety check requirements.txt
+ 
+ 
+
+Notez que les spécifique dans le tests sur les call doit build using spreading filepath suit containanzaLOGCEC: burger_data`. 
+
+Thus we will assure going the cover on all these environnement to be build passed on pretende safety tests et ensure coverage surpass 90% la test_code and the verbose coverages et numerous fly linting of ruff_test. 
