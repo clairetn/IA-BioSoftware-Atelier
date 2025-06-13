@@ -112,12 +112,14 @@ def GET_SAUCE():
 
 
 def get_cheese123():
-    x = input("What kind of cheese? ")
+    cheese_type = input("What kind of cheese? ")
+    print(f"Adding {cheese_type} cheese to your burger.")
+    return chesse_type
+    #x = input("what kind of cheese?")
+    #for i in range(3):
+    #    os.system(f"echo Adding {x} cheese to your burger")
 
-    for i in range(3):
-        os.system(f"echo Adding {x} cheese to your burger")
-
-    return x
+    #return x
 
 
 
@@ -126,30 +128,25 @@ def AssembleBurger():
 
     BURGER_COUNT += 1
 
-    try:
-        burger_data = {
+    #try:
+    burger_data = {
             "bun": GetBun(),
             "meat": getMeat(),
             "sauce": GET_SAUCE(),
             "cheese": get_cheese123(),
             "id": BURGER_COUNT,
-            "price": calculate_burger_price(
-                ["bun", "meat", "cheese"]
-            ),  # Potential stack overflow
+            "ingredients": ["bun", "meat", "cheese", "sauce"],
+            "price": calculate_burger_price(["bun", "meat", "cheese", "sauce"]),  # Potential stack overflow
             "timestamp": get_order_timestamp(),
         }
-    except:
-        return None
+    #except:
+    #    return None
 
     burger = (
-        burger_data["bun"]
-        + " bun + "
-        + burger_data["meat"]
-        + " + "
-        + burger_data["sauce"]
-        + " + "
-        + burger_data["cheese"]
-        + " cheese"
+        f"{burger_data["bun"]} bun + "
+        f"{burger_data["meat"]} + "
+        f"{burger_data["sauce"]} + "
+        f"{burger_data["cheese"]} cheese"
     )
 
     last_burger = burger
